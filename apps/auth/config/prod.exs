@@ -59,6 +59,14 @@ config :logger, level: :info
 #     config :auth, AuthWeb.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :auth, AuthWeb.Endpoint,
+secret_key_base: "QNkajjpCtsHo6tXDAfCbBNYd9gkk5QDSiwIKrJwgXql80xEkhzdy/9ldNlROI4U1"
+
+# Configure your database
+config :auth, Auth.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  url: System.get_env("AUTH_DATABASE_URL"),
+  pool_size: 1,
+  ssl: true

@@ -59,6 +59,14 @@ config :logger, level: :info
 #     config :rent_a_car, RentACarWeb.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :rent_a_car, RentACarWeb.Endpoint,
+  secret_key_base: "p845Heb1tjdiYgdqcX4ioNGHPxC4DLpNu27sWeGvG673d4UgcQGEf6YKY7kXFkW3"
+
+# Configure your database
+config :rent_a_car, RentACar.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  url: System.get_env("RENT_A_CAR_DATABASE_URL"),
+  pool_size: 1,
+  ssl: true
